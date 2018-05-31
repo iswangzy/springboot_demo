@@ -1,0 +1,24 @@
+package com.wzy.springboot_demo;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.MultipartConfigFactory;
+import org.springframework.context.annotation.Bean;
+
+import javax.servlet.MultipartConfigElement;
+
+@SpringBootApplication
+public class SpringbootDemoApplication {
+	public static void main(String[] args) {
+		SpringApplication.run(SpringbootDemoApplication.class, args);
+	}
+	@Bean
+	public MultipartConfigElement multipartConfigElement() {
+		MultipartConfigFactory factory = new MultipartConfigFactory();
+		//单个文件最大 //KB,MB
+		factory.setMaxFileSize("120MB");
+		/// 设置总上传数据总大小
+		factory.setMaxRequestSize("1024000MB");
+		return factory.createMultipartConfig();
+	}
+}
